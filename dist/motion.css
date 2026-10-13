@@ -1,0 +1,27 @@
+.hero{position:relative;isolation:isolate}
+.hero::before{content:'';position:absolute;z-index:-1;inset:12% 3% 10% 35%;border-radius:50%;background:radial-gradient(ellipse,#ec163d16,transparent 68%);pointer-events:none;animation:luno-glow 16s ease-in-out infinite alternate;animation-play-state:paused}
+.hero .browser{animation:luno-float 7s ease-in-out infinite;animation-play-state:paused;will-change:transform}
+.hero .floating-tag{animation:luno-tag 6s ease-in-out infinite;animation-play-state:paused}
+.hero.motion-in-view::before,.hero.motion-in-view .browser,.hero.motion-in-view .floating-tag{animation-play-state:running}
+@keyframes luno-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(-2deg)}}
+@keyframes luno-tag{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(7px) rotate(1deg)}}
+@keyframes luno-glow{from{transform:translate(-4%,0) scale(.9);opacity:.65}to{transform:translate(4%,3%) scale(1.06);opacity:1}}
+.motion-toggle{display:block;margin-top:12px;padding:7px 0;min-height:40px;border:0;background:none;color:#aaaab5;text-decoration:underline;text-underline-offset:4px;font-size:12px;cursor:pointer}
+.motion-toggle:disabled{cursor:default;text-decoration:none}
+.ticker{display:block;padding:23px 0;overflow:hidden}
+.ticker-track{display:flex;width:max-content;animation:luno-marquee 36s linear infinite;animation-play-state:paused}
+.ticker.motion-in-view .ticker-track{animation-play-state:running}
+.ticker-group{display:flex;align-items:center;gap:35px;flex-shrink:0;padding-right:35px;white-space:nowrap}
+.ticker .ticker-group span,.ticker .ticker-group b{display:block}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes luno-marquee{to{transform:translateX(-50%)}}
+.benefit-grid article,.steps article{transition:transform .3s ease,border-color .3s ease}
+.services summary h3{transition:color .25s ease,transform .25s ease}
+.services summary b{transition:transform .3s ease,color .25s ease}
+@media(hover:hover) and (pointer:fine){.benefit-grid article:hover{transform:translateY(-5px);border-color:var(--red)}.services summary:hover h3{color:#ff6572;transform:translateX(5px)}.steps article:hover{transform:translateY(-4px)}}
+.motion-paused .hero::before,.motion-paused .hero .browser,.motion-paused .hero .floating-tag,.motion-paused .ticker-track,.page-inactive .hero::before,.page-inactive .hero .browser,.page-inactive .hero .floating-tag,.page-inactive .ticker-track{animation-play-state:paused}
+.motion-paused .ticker-track{animation:none;transform:none;width:100%}
+.motion-paused .ticker-group{flex-wrap:wrap;justify-content:center;white-space:normal;padding:0 22px;width:100%;gap:18px 28px}
+.motion-paused .ticker-group[aria-hidden]{display:none}
+@media(max-width:760px){.ticker{padding:18px 0}.ticker-group{gap:24px;padding-right:24px}.hero::before{inset:40% 5% 2% 5%}.hero .browser{animation-name:luno-float-mobile}@keyframes luno-float-mobile{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-5px) rotate(-3deg)}}}
+@media(prefers-reduced-motion:reduce){.hero::before,.hero .browser,.hero .floating-tag,.ticker-track{animation:none!important}.ticker-track{width:100%}.ticker-group{width:100%;flex-wrap:wrap;justify-content:center;white-space:normal;padding:0 22px;gap:18px 28px}.ticker-group[aria-hidden]{display:none}.benefit-grid article:hover,.steps article:hover,.services summary:hover h3{transform:none}}
