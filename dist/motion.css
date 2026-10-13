@@ -6,14 +6,12 @@
 @keyframes luno-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(-2deg)}}
 @keyframes luno-tag{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(7px) rotate(1deg)}}
 @keyframes luno-glow{from{transform:translate(-4%,0) scale(.9);opacity:.65}to{transform:translate(4%,3%) scale(1.06);opacity:1}}
-.motion-toggle{display:block;margin-top:12px;padding:7px 0;min-height:40px;border:0;background:none;color:#aaaab5;text-decoration:underline;text-underline-offset:4px;font-size:12px;cursor:pointer}
-.motion-toggle:disabled{cursor:default;text-decoration:none}
 .ticker{display:block;padding:23px 0;overflow:hidden}
 .ticker-track{display:flex;width:max-content;animation:luno-marquee 36s linear infinite;animation-play-state:paused}
 .ticker.motion-in-view .ticker-track{animation-play-state:running}
 .ticker-group{display:flex;align-items:center;gap:35px;flex-shrink:0;padding-right:35px;white-space:nowrap}
 .ticker .ticker-group span,.ticker .ticker-group b{display:block}
-.ticker:hover .ticker-track{animation-play-state:paused}
+
 @keyframes luno-marquee{to{transform:translateX(-50%)}}
 .benefit-grid article,.steps article{transition:transform .3s ease,border-color .3s ease}
 .services summary h3{transition:color .25s ease,transform .25s ease}

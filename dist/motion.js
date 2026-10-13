@@ -1,11 +1,8 @@
 (() => {
   const root = document.documentElement;
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  const toggle = document.querySelector('.motion-toggle');
-  let userPaused = false;
-  try { userPaused = localStorage.getItem('luno-motion-paused') === 'true'; } catch {}
   const running = new Set();
-  const enabled = () => !preference.matches && !userPaused;
+  const enabled = () => !preference.matches;
   function play(element, frames, options) {
     if (!enabled() || !element.animate) return;
     const animation = element.animate(frames, options);
@@ -16,17 +13,8 @@
   }
   function syncMotion() {
     root.classList.toggle('motion-paused', !enabled());
-    toggle.textContent = enabled() ? 'Pausar animações' : 'Ativar animações';
-    toggle.setAttribute('aria-pressed', String(!enabled()));
-    toggle.disabled = preference.matches;
-    if (preference.matches) toggle.textContent = 'Movimento reduzido';
     if (!enabled()) running.forEach(animation => animation.cancel());
   }
-  toggle.addEventListener('click', () => {
-    userPaused = !userPaused;
-    try { localStorage.setItem('luno-motion-paused', String(userPaused)); } catch {}
-    syncMotion();
-  });
   preference.addEventListener('change', syncMotion);
   syncMotion();
   const entrance = [
